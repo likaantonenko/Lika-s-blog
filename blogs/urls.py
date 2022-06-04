@@ -10,7 +10,7 @@ urlpatterns = [
     #сторінка з постиками
     path('posts/', views.posts, name='posts'),
     #сторінка окремого посту
-    path('posts/<int:post_id>/', views.post, name='post'),
+    path('post/<int:post_id>/', views.post, name='post'),
     #сторінка для додавання нового посту
     path('new_post/', views.new_post, name='new_post'),
     #сторінка для редагування посту
