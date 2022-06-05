@@ -2,10 +2,12 @@
 {% block content %} 
 
   <p>Posts</p>
+  
   <ul>
     {% for post in posts %} 
       <li>
-        <a href="{% url 'blogs:post' post.id %}">{{ post }}, {{ post.date_added }}</a>
+        <p>{{ post.date_added }}</p>
+        <a href="{% url 'blogs:post' post.id %}">{{ post }}</a>
       </li>
     {% empty %}
       <li> no posts </li>
