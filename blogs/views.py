@@ -1,6 +1,7 @@
 from cmath import log
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from .models import BlogPost
 from .forms import PostForm
 
@@ -38,6 +39,9 @@ def new_post(request):
 @login_required
 def edit_post(request, post_id):
     post = BlogPost.objects.get(id=post_id)
+    #пересвідчитись, що тема належить поточному користувачеві
+    if post.owner != request.user:
+        raise Http404
     if request.method != 'POST':
         form = PostForm(instance=post)
     else:
