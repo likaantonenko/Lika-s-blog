@@ -1,4 +1,6 @@
+from cmath import log
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import BlogPost
 from .forms import PostForm
 
@@ -19,6 +21,7 @@ def post(request, post_id):
     context = {'post': post, 'title': title, 'text': text}
     return render(request, 'blogs/post.html', context)
 
+@login_required
 def new_post(request):
     #add new post
     if request.method != 'POST':
@@ -32,6 +35,7 @@ def new_post(request):
     context = {'form': form}
     return render(request, 'blogs/new_post.html', context)
 
+@login_required
 def edit_post(request, post_id):
     post = BlogPost.objects.get(id=post_id)
     if request.method != 'POST':
