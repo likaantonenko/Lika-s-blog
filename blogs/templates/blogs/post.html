@@ -1,16 +1,29 @@
 {% extends 'blogs/base.html' %} 
 
-{% block content %} 
- <p>Title: {{ title }}</p>
+{% block page_header %} 
+ <h5>{{ title }}</h5>
+{% endblock page_header %}
 
- <p>Text:</p>
-  {% if text %}
-  <p>{{ text }}</p>
- {% else %}
- <p>No text yet.</p>
- {% endif %}
+{% block content %}
  <p>
-   <a href="{% url 'blogs:edit_post' post.id %}">Edit post</a>
+  <a href="{% url 'blogs:new_post' %}"> Add new post </a>
  </p>
 
+    <div class="card mb-3">
+      <h4 class="card-header">
+        {{ text }}
+        <small><a href="{% url 'blogs:edit_post' post.id %}"> Edit post </a></small>
+      </h4>
+      <div class="card-body">
+        {{ post.text|linebreaks }}
+      </div>
+    </div>
+
+    <p>No text yet.</p>
+
+ 
+ <div class="form-floating">
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+  <label for="floatingTextarea2">Comments</label>
+</div>
 {% endblock content %}

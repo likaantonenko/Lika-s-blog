@@ -30,6 +30,7 @@ def new_post(request):
     else:
         form = PostForm(data=request.POST)
         if form.is_valid:
+            # cuurent user as owner
             form.save()
             return redirect('blogs:posts')
 
