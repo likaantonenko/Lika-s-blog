@@ -134,6 +134,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #My settings
 LOGIN_URL = 'users:login'
 
+
+MEDIA_ROOT = 'E:\програмування\Django_Blog\media'
+
 #Heroku settings.
 import django_heroku
 django_heroku.settings(locals())

@@ -1,29 +1,54 @@
 {% extends 'blogs/base.html' %} 
 
 {% block page_header %} 
- <h5>{{ title }}</h5>
+ <h4>{{ title }}</h4>
 {% endblock page_header %}
 
 {% block content %}
- <p>
-  <a href="{% url 'blogs:new_post' %}"> Add new post </a>
- </p>
-
     <div class="card mb-3">
       <h4 class="card-header">
         {{ text }}
+        <img src="{{ post.image.url }}"> 
         <small><a href="{% url 'blogs:edit_post' post.id %}"> Edit post </a></small>
       </h4>
-      <div class="card-body">
-        {{ post.text|linebreaks }}
-      </div>
     </div>
+   
+   
 
-    <p>No text yet.</p>
+<!--Comments-->
+{% with comments.count as total_comments %}
+    <h5>
+        {{ total_comments }}{{ total_comments|pluralize }}
+    </h5>
+{% endwith %}
 
- 
- <div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-  <label for="floatingTextarea2">Comments</label>
-</div>
+{% for comment in comments %}
+    <div class="comment">
+        <p class="info">
+            Comment {{ forloop.counter }} by {{ comment.name }}
+            {{ comment.created }}
+        </p>
+        {{ comment.body|linebreaks }}
+    </div>
+{% empty %}
+    <p>There are no comments yet.</p>
+{% endfor %}
+
+{% if new_comment %}
+    <h2>Your comment has been added.</h2>
+{% else %}
+    <form action="." method="post">
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Add comment"></p>
+    </form>
+{% endif %}
+
+<!--Add new post-->
+<br>
+<p><a class="btn btn-dark" href="{% url 'blogs:new_post' %}" role="button" target="_blank">Add new post</a>
+  <br>
+  <br>
+  <a class="btn btn-dark" href="{% url 'blogs:index' %}" role="button" target="_blank"> Back to main page</a>
+</p>
 {% endblock content %}
