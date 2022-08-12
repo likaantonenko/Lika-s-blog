@@ -9,7 +9,7 @@
       <li><h5>
         <a href="{% url 'blogs:post' post.id %}">{{ post }}</a> 
         <br>
-        <p>{{ post.owner }} {{ post.date_added }}</p>
+       <small><p>{{ post.owner }} {{ post.date_added }}</p></small> 
       </h5></li>
     {% empty %}
       <li><h5>No posts have been added yet.</h5></li>
