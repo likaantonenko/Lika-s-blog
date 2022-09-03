@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from .models import BlogPost, Comment
 from .forms import PostForm, CommentForm
+from django.db.models import Q
 
 def index(request):
     return render(request, 'blogs/index.html')
@@ -11,7 +12,7 @@ def index(request):
 def posts(request):
     search_query = request.GET.get('search', '')
     if search_query:
-        posts = BlogPost.objects.filter(title__icontains=search_query)
+        posts = BlogPost.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query))
     else:
     #show all posts
         posts = BlogPost.objects.order_by('-date_added')

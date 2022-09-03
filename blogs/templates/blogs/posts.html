@@ -6,6 +6,7 @@
 {% block content %}
   <ul>
     {% for post in posts %} 
+
       <li><h5>
         <a href="{% url 'blogs:post' post.id %}">{{ post }}</a> 
         <br>
