@@ -17,4 +17,5 @@ urlpatterns = [
     #сторінка для редагування посту
     path('edit_post/<int:post_id>/', views.edit_post, name='edit_post'),
    
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+ 

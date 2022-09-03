@@ -1,4 +1,5 @@
 {% extends "blogs/base.html" %}
+{% load static %}
 {% block page_header %}
 <section class="py-5 text-center container">
   <div class="row py-lg-5">
@@ -41,6 +42,7 @@
 {% block content %}
 <!-- FOOTER -->
 <footer class="footer">
+  <div class="row">
         <div class="widget-content" >
           <h5 class="widget-title subheading heading-size-3">Мої контакти</h5>		
           <p>
@@ -55,10 +57,14 @@
               </a>
            </p>
           </div>
+          <div class="col-sm-2 col-sm-offset-5 col-md-9 col-md-offset-0" alin="right"> 
           <audio controls>
-            <source src="file:///E:/%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F/Django_Blog/media/music/Izzamuzzic_Julien_Marchal_Shootout.mp3"
-            type="audio/mp3"></source>
+            <link rel="stylesheet" href=" {% static 'blogs/music/music.mp3' %}">
+            <!--<source src="file:///E:/%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F/Django_Blog/media/music/Izzamuzzic_Julien_Marchal_Shootout.mp3"
+            type="audio/mp3"></source>-->
           </audio>
+        </div>
+  </div>
           
             
   

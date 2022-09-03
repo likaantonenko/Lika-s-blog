@@ -9,8 +9,13 @@ def index(request):
     return render(request, 'blogs/index.html')
 
 def posts(request):
+    search_query = request.GET.get('search', '')
+    if search_query:
+        posts = BlogPost.objects.filter(title__icontains=search_query)
+    else:
     #show all posts
-    posts = BlogPost.objects.order_by('-date_added')
+        posts = BlogPost.objects.order_by('-date_added')
+    
     context = {'posts': posts}
     return render(request, 'blogs/posts.html', context)
 

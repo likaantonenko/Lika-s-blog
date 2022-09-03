@@ -63,8 +63,8 @@
               <a class="nav-link" href="{% url 'users:login' %}">Log in</a></li>
             {% endif%}
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex" role="search" action="{% url 'blogs:posts' %}">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>

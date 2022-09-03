@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class BlogPost(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, db_index=True)
     text = models.TextField()
     image = models.ImageField(upload_to='images/%Y/%m/%d/', blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
