@@ -1,21 +1,24 @@
 {% extends "blogs/base.html" %} 
 {% block page_header %} 
-  <h3>Posts</h3>
+  <h3>Posts</h3> 
+  <h5><a href="{% url 'blogs:new_post' %}">Add a new post</a></h5>
 {% endblock page_header %}
 
 {% block content %}
   <ul>
     {% for post in posts %} 
-
-      <li><h5>
-        <a href="{% url 'blogs:post' post.id %}">{{ post }}</a> 
-        <br>
-       <small><p>{{ post.owner }} {{ post.date_added }}</p></small> 
-      </h5></li>
+    <div class="card">
+      <h5 class="card-header">{{ post.date_added }}</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.text|truncatewords:50}}</p>
+        <a href="{% url 'blogs:post' post_id=post.id %}" class="btn btn-light">Читати більше</a>
+      </div>
+    </div>
     {% empty %}
       <li><h5>No posts have been added yet.</h5></li>
     {% endfor %}
   </ul>
-  <h5><a href="{% url 'blogs:new_post' %}">Add a new post</a></h5>
+  
 
 {% endblock content %}
